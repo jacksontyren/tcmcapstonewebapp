@@ -17,20 +17,23 @@ This capstone project involved conducting a web application penetration test as 
 <li>Browser Developer Tools</li>
 <li>Manual HTTP request manipulation</li>
 <li>Linux command-line utilities</li>
-<li>OWASP Top 10 methodology</li>
-<!-- <li>Custom payload crafting for exploit validation</li> -->
 
 <br />
 
+
+<!--
 <h2>Penetration Testing Methodology</h2>
 <p>
 The assessment followed a structured offensive security workflow aligned with industry practices:
 </p>
+
 <li><strong>Reconnaissance:</strong> Application mapping, endpoint discovery, parameter identification</li>
 <li><strong>Enumeration:</strong> Authentication flows, session handling, access control logic</li>
 <li><strong>Vulnerability Identification:</strong> Injection flaws, broken authentication, misconfigurations</li>
 <li><strong>Exploitation:</strong> Proof-of-concept exploitation and impact validation</li>
 <li><strong>Post-Exploitation:</strong> Privilege escalation analysis and attack chaining opportunities</li>
+-->
+
 
 <br />
 
@@ -52,20 +55,31 @@ The following vulnerability categories were identified and successfully validate
 
 Observation: A successful signup was performed using the username alex and password alex, indicating weak password acceptance. 
 
-<br>
+<img width="1114" height="706" alt="Image" src="https://github.com/user-attachments/assets/b7e501b3-572a-4375-9508-ebfcae0865b6" />
 
+<img width="1121" height="270" alt="Image" src="https://github.com/user-attachments/assets/e8b73834-63e2-401e-bc3d-7a119d6ef800" />
+
+<br>
+<br>
 
 Finding 2 — Allows HTML Injection
 
 Observation: A message parameter in the URL accepted and rendered unvalidated HTML content in the page. 
 
-<br>
+<img width="1125" height="255" alt="Image" src="https://github.com/user-attachments/assets/969ab71f-9679-406f-abdd-b283486ac9b1" />
 
+<img width="1120" height="271" alt="Image" src="https://github.com/user-attachments/assets/f96e6f42-6179-41e2-92fa-7fd440390458" />
+
+<br>
+<br>
 
 Finding 3 — Reflected Cross-Site Scripting (XSS)
 
 Observation: A script payload placed in the URL was reflected back in the server response to the client. 
 
+<img width="1120" height="598" alt="Image" src="https://github.com/user-attachments/assets/1acce465-bb3c-4ac0-9461-729ec14fddb5" />
+
+<br>
 <br>
 
 
@@ -73,18 +87,28 @@ Finding 4 — Stored Cross-Site Scripting (XSS)
 
 Observation: A script payload placed in a ratings field persisted and executed on refresh. 
 
+<img width="1119" height="627" alt="Image" src="https://github.com/user-attachments/assets/6279fb61-5751-4f0a-9679-3353be8cabe7" />
+
+<img width="1122" height="546" alt="Image" src="https://github.com/user-attachments/assets/8f277f56-8c44-4316-b338-108071af4b82" />
+<br>
 <br>
 
 
 Finding 5 — SQL Injection (SQLi)
 
-Observation: SQL injection was validated in the coffee parameter through manual testing:
+Observation: SQL injection was validated in the coffee parameter through manual testing: Attempted boolean logic injection patterns (e.g., or 1=1 style tests). Confirmed union-based injection with 7 columns
 
-Attempted boolean logic injection patterns (e.g., or 1=1 style tests)
+<img width="1116" height="699" alt="Image" src="https://github.com/user-attachments/assets/a2b0a48a-f374-4673-addf-13d2f0893d8c" />
 
-Confirmed union-based injection with 7 columns
+<img width="1121" height="708" alt="Image" src="https://github.com/user-attachments/assets/9cd2b0bf-180b-4b6b-93f7-ed06c39c108c" />
 
-Enumerated table names and column names via INFORMATION_SCHEMA 
+
+Enumerated table names and column names via INFORMATION_SCHEMA. 
+<br><br>coffee=2' union select null,TABLE_NAME,null,null,null,null,null FROM INFORMATION_SCHEMA.TABLES--<br>
+
+<img width="1261" height="581" alt="Image" src="https://github.com/user-attachments/assets/522eab0b-554e-4384-8aed-43969b6ff855" />
+
+<img width="1263" height="715" alt="image" src="https://github.com/user-attachments/assets/8379f891-7e57-450d-baba-9f02ceb1d853" />
 
 
 SQLMap Validation & Data Extraction (Evidence of SQLi)
